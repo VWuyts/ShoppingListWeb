@@ -1,5 +1,13 @@
 # ShoppingListWeb
 
+Lab assignment for course GUI Development 2018-2019
+
+Thomas More campus De Nayer
+
+Bachelor Elektronica-ICT option Application Development
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.
 
 ## Development server
