@@ -1,0 +1,18 @@
+/* Ref: Ahmad_2016 */
+@media (min-width: 34em) {
+  .card-columns {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+/* Refs: GoogleMaterialDesign_2018 - smugglerFlyn_2014 */
+#refOverride.bgLime50 {
+  background-color: #F9FBE7;
+}
+#refOverride .bgLime500 {
+  background-color: #CDDC39;
+}
+#refOverride .bgLime900 {
+  background-color: #827717;
+}

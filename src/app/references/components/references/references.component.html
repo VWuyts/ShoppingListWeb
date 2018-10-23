@@ -1,0 +1,33 @@
+<div id="refOverride" class="container-fluid bgLime50">
+  <div class="container">
+
+    <div class="row py-4">
+      <div class="col-12">
+        <h3>Referenties</h3>
+      </div> <!-- end column -->
+    </div> <!-- end row -->
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card-columns">
+          <div class="card" *ngFor="let ref of references | sort: 1:'id'">
+            <div class="card-header bgLime500">
+              {{ref.id}}
+            </div> <!-- end card-header -->
+            <div class="card-body">
+              <p class="card-text text-justify">
+                {{ref.author}} ({{ref.year}}).
+                <span class="font-italic">{{ref.title | punctuation}}</span>
+                <span *ngIf="ref.organisation !== ''"> {{ref.organisation | punctuation}}</span>
+                <span class="small"> URL: </span>
+                <a href="{{ref.url}}" class="card-link" target="blank">{{ref.url}}</a>
+                (bezocht op {{ref.urlDate | date:"dd/MM/yyyy"}}).
+              </p>
+            </div> <!-- end card-body -->
+          </div> <!-- end card -->
+        </div> <!-- end card-columns-->
+      </div> <!-- end column -->
+    </div> <!-- end row -->
+
+  </div> <!-- end container -->
+</div> <!-- end container-fluid -->
