@@ -1,26 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
+    AngularFontAwesomeModule,
     CommonModule,
-    RouterModule,
-    AngularFontAwesomeModule
+    RouterModule
+  ],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   exports: [
     FooterComponent,
     HeaderComponent
-  ],
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent
   ],
   providers: [
 
