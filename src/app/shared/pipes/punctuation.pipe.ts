@@ -13,8 +13,8 @@ export class PunctuationPipe implements PipeTransform {
     const lastChar = value.slice(-1);
     if (lastChar === '.' || lastChar === '?' || lastChar === '!') {
       return value;
-    } else {
-      return value + '.';
     }
+
+    return value + '.';
   }
 }
