@@ -1,0 +1,10 @@
+/* Refs: GoogleMaterialDesign_2018 - SmugglerFlyn_2014 */
+#registerOverride.bgLime50 {
+  background-color: #F9FBE7;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+input.ng-valid.ng-touched{
+  border: 1px solid green;
+}

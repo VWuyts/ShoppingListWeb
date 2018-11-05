@@ -1,0 +1,42 @@
+<div id="registerOverride" class="container-fluid bgLime50">
+  <div class="container py-3">
+    <h3>Registreren</h3>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-control" formControlName="email" />
+            <span class="text-muted"
+              *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">
+              <span *ngIf="registrationForm.get('email').errors !== null && registrationForm.get('email').errors['required']">
+                Email is verplicht
+              </span>
+              <span *ngIf="registrationForm.get('email').errors !== null && registrationForm.get('email').errors['email']">
+                Geef een correcte email aub
+              </span>
+              <span *ngIf="registrationForm.get('email').errors !== null && registrationForm.get('email').errors['emailTaken']">
+                Deze email is al geregistreerd
+              </span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="passwd">Paswoord:</label>
+            <input type="password" id="passwd" class="form-control" formControlName="passwd" />
+            <span class="text-muted"
+              *ngIf="!registrationForm.get('passwd').valid && registrationForm.get('passwd').touched">
+              <span *ngIf="registrationForm.get('passwd').errors !== null && registrationForm.get('passwd').errors['required']">
+                Paswoord is verplicht
+              </span>
+              <span *ngIf="registrationForm.get('passwd').errors !== null && registrationForm.get('passwd').errors['invalidFormat'] && !registrationForm.get('passwd').errors['required']">
+                Paswoord moet minstens 8 tekens bevatten met minstens 1 hoofdletter, 1 kleine letter, 1 cijfer en 1 speciaal teken
+              </span>
+            </span>
+          </div>
+          <button class="btn btn-primary btn-lg pull-right" type="submit" >Registreer</button> <!-- [disabled]="!registrationForm.valid" -->
+          <a class="btn btn-outline-danger pull-right mr-5" routerLink="/home">Cancel</a>
+        </form>
+      </div>
+    </div> <!-- end row -->
+  </div> <!-- end container -->
+</div> <!-- end container-fluid -->
