@@ -38,5 +38,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# API key file
-app.component.ts
+# app component file
+src/app/app.component.ts
