@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Product } from 'src/app/list/basic-classes/product';
-import { ProductBEService } from 'src/app/list/services/product-be.service';
+import { Product } from '../../basic-classes/product';
+import { ProductBEService } from '../../services/product-be.service';
 
 @Component({
-  selector: 'app-admin-product',
-  templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class AdminProductComponent implements OnInit {
+export class AdminComponent implements OnInit {
   private products: Product[] = [
     {id: 1, name: 'Abrikozen', category: 'Fruit', unit: 'kg', image: '',
       note: '', shop: '', isFixedShop: false, isFavourite: false},

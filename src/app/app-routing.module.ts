@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'about', loadChildren: './about/about.module#AboutModule' },
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'download', loadChildren: './download/download.module#DownloadModule' },
   { path: 'home', component: HomeComponent },
   { path: 'hulp', loadChildren: './support/support.module#SupportModule' },
