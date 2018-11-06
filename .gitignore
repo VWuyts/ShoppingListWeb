@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 # app component file
-src/app/app.component.ts
+src/app/app-config.ts

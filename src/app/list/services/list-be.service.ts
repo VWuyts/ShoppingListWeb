@@ -7,7 +7,7 @@ import { ListItem } from '../basic-classes/list-item';
   providedIn: 'root'
 })
 export class ListBEService {
-  private url = 'https://shopping-list-web-vw.firebaseio.com/list.json';
+  private url = 'https://shoppinglistweb-vw.firebaseio.com/list.json';
 
   constructor(private http: HttpClient) { }
 

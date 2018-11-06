@@ -7,7 +7,7 @@ import { Product } from '../basic-classes/product';
   providedIn: 'root'
 })
 export class ProductBEService {
-  private url = 'https://shopping-list-web-vw.firebaseio.com/product.json';
+  private url = 'https://shoppinglistweb-vw.firebaseio.com/product.json';
 
   constructor(private http: HttpClient) { }
 
