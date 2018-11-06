@@ -9,6 +9,7 @@ import { LimitPipe } from './pipes/limit.pipe';
 import { PunctuationPipe } from './pipes/punctuation.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { UnitPipe } from './pipes/unit.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { UnitPipe } from './pipes/unit.pipe';
     PunctuationPipe,
     SortPipe,
     UnitPipe,
+    FilterPipe,
   ],
   exports: [
     AngularFontAwesomeModule,

@@ -1,3 +1,18 @@
-<p>
-  list-item works!
-</p>
+<div class="row text-dark">
+    <div class="col-2 imgHeight">
+        <img *ngIf="childListItem.image" src="/assets/images/{{childListItem.image}}" alt="Productfoto" class="imgHeight" />
+    </div>
+    <div class="col-7">
+      <h6 class="m-0">{{childListItem.name | limit: 40}}</h6>
+      <span *ngIf="childListItem.amount > 0" class="text-muted">
+        {{childListItem.amount}} {{childListItem.unit | unit: childListItem.amount}}
+      </span>
+      <span class="text-muted">{{getNote() | limit: 30}}</span>
+    </div>
+    <div class="col-1">
+      <h2 *ngIf="childListItem.inPromotion">$</h2>
+    </div>
+    <div class="col-2">
+      <img *ngIf="childListItem.shop" src="/assets/images/logo_{{childListItem.shop | lowercase}}.png" alt="winkellogo" class="logoWidth" />
+    </div>
+  </div>

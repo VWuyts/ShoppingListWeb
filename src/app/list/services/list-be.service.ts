@@ -7,20 +7,21 @@ import { ListItem } from '../basic-classes/list-item';
   providedIn: 'root'
 })
 export class ListBEService {
-  private url = 'https://shoppinglistweb-vw.firebaseio.com/list.json';
+  private listUrl = 'https://shoppinglistweb-vw.firebaseio.com/';
+  private extension = '.json';
 
   constructor(private http: HttpClient) { }
 
-  storeList(list: ListItem[]) {
-    return this.http.put(this.url, list);
+  storeList(list: ListItem[], uid: string) {
+    return this.http.put(this.listUrl + uid + this.extension, list);
   }
 
-  getList() {
-    return this.http.get<ListItem[]>(this.url);
+  getList(uid: string) {
+    return this.http.get<ListItem[]>(this.listUrl + uid + this.extension);
   }
 
-  clearShoppingList() {
+  clearShoppingList(uid: string) {
     const list: ListItem[] = [];
-    return this.http.put(this.url, list);
+    return this.http.put(this.listUrl + uid + this.extension, list);
   }
 }

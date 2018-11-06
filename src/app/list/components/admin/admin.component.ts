@@ -535,10 +535,61 @@ export class AdminComponent implements OnInit {
     {id: 262, name: 'Zeevruchten', category: 'Diepvries', unit: '', image: '',
       note: '', shop: '', isFixedShop: false, isFavourite: false}
   ];
+  categories: string[] = [
+    'Fruit',
+    'Groenten',
+    'Vlees',
+    'Vis',
+    'Kaas',
+    'Zuivel',
+    'Pasta en granen',
+    'Ontbijt',
+    'Bakkerij',
+    'Specerijen',
+    'Conserven',
+    'Sauzen',
+    'Diepvries',
+    'Papierwaren',
+    'Andere'
+  ];
+  shops: string[] = [
+    'Albert Heijn',
+    'Aldi',
+    'Bio-Planet',
+    'Carrefour',
+    'Colruyt',
+    'Delhaize',
+    'Lidl',
+    'Okay',
+    'Spar'
+  ];
+  units: string[] = [
+    'g',
+    'kg',
+    'stuk',
+    'pak',
+    'zakje',
+    'bakje',
+    'netje',
+    'pot',
+    'tros',
+    'bussel',
+    'kist',
+    'karton'
+  ];
+  private lastProductId = 262;
 
   constructor(private productBEService: ProductBEService) { }
 
   ngOnInit() {
+  }
+
+  onResetCategories() {
+    this.productBEService.storeCategories(this.categories).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log('storeCategories ready')
+    );
   }
 
   onResetProducts() {
@@ -546,6 +597,22 @@ export class AdminComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error),
       () => console.log('storeProducts ready')
+    );
+  }
+
+  onResetShops() {
+    this.productBEService.storeShops(this.shops).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log('storeShops ready')
+    );
+  }
+
+  onResetUnits() {
+    this.productBEService.storeUnits(this.units).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log('storeUnits ready')
     );
   }
 }

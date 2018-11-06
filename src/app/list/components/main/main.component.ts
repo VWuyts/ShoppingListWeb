@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private listBEService: ListBEService
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
@@ -35,6 +35,9 @@ export class MainComponent implements OnInit {
 
   onClearList() {
     // TODO: ask confirmation
-    this.listBEService.clearShoppingList();
+    this.listBEService.clearShoppingList(this.authService.getUid()).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
 }

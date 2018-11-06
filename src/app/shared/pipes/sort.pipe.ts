@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortPipe implements PipeTransform {
 
   transform(value: any, direction: number, propName: string): any {
-    if (value === null || value.length === null || direction === 0) {
+    if (value === null || !value.length || direction === 0) {
       return null;
     }
 
