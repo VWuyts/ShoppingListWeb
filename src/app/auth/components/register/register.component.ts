@@ -1,7 +1,7 @@
 import { catchError, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { from, Observable, throwError } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   validPasswordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$/; // Ref: Srinivas_2014
-  emails: string[] = [];
   registrationForm: FormGroup;
 
   constructor(private authService: AuthService) { }

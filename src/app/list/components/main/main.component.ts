@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ListBEService } from '../../services/list-be.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -9,9 +10,19 @@ import { ListBEService } from '../../services/list-be.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private listBEService: ListBEService) { }
+  constructor(
+    private authService: AuthService,
+    private listBEService: ListBEService
+    ) { }
 
   ngOnInit() {
+  }
+
+  isAdmin(): boolean {
+    if (this.authService.isAdmin()) {
+      return true;
+    }
+    return false;
   }
 
   onSortAbc() {

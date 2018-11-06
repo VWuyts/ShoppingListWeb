@@ -1,7 +1,4 @@
 /* Refs: GoogleMaterialDesign_2018 - SmugglerFlyn_2014 */
-#loginOverride.bgLime50 {
+#successOverride.bgLime50 {
   background-color: #F9FBE7;
-}
-input.ng-invalid.ng-touched{
-  border: 1px solid red;
 }

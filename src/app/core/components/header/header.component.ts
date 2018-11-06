@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,23 @@ import { Title } from '@angular/platform-browser';
 export class HeaderComponent implements OnInit {
   private pageTitle = 'Boodschappenlijst';
 
-  constructor(private title: Title) { }
+  constructor(
+    private title: Title,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.title.setTitle(this.pageTitle);
   }
 
-  onLogin() {
-
+  isLoggedIn() {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
+    return false;
   }
 
-  onRegister() {
-
+  onLogout() {
+    this.authService.logout();
   }
 }

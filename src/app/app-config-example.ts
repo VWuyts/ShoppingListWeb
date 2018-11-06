@@ -6,6 +6,11 @@ export class AppConfig {
     projectID: 'shopping-list-web-vw',
     storageBucket: 'shopping-list-web-vw.appspot.com',
   };
+  private adminEmail = 'admin@admin.be';
+
+  getAdminEmail(): string {
+    return this.adminEmail;
+  }
 
   getConfig() {
     return this.config;

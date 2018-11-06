@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './core/services/auth.guard';
 import { HomeComponent } from './core/components/home/home.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
@@ -11,10 +12,10 @@ const appRoutes: Routes = [
   { path: 'download', loadChildren: './download/download.module#DownloadModule' },
   { path: 'home', component: HomeComponent },
   { path: 'hulp', loadChildren: './support/support.module#SupportModule' },
-  { path: 'lijst', loadChildren: './list/list.module#ListModule' },
-  { path: 'recepten', loadChildren: './recipe/recipe.module#RecipeModule' },
+  { path: 'lijst', loadChildren: './list/list.module#ListModule', canLoad: [AuthGuard] },
+  { path: 'recepten', loadChildren: './recipe/recipe.module#RecipeModule', canLoad: [AuthGuard] },
   { path: 'referenties', loadChildren: './references/references.module#ReferencesModule' },
-  { path: 'winkels', loadChildren: './shop/shop.module#ShopModule' },
+  { path: 'winkels', loadChildren: './shop/shop.module#ShopModule', canLoad: [AuthGuard] },
   { path: '404-page', component: PageNotFoundComponent },
   { path: '**', redirectTo: '404-page' }
 ];

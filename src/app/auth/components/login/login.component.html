@@ -1,3 +1,42 @@
-<p>
-  login works!
-</p>
+<div id="loginOverride" class="container-fluid bgLime50">
+    <div class="container py-3">
+      <h3>Inloggen</h3>
+      <div class="row">
+        <div class="col-6 offset-3">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" class="form-control" formControlName="email" />
+              <span class="text-muted"
+                *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
+                <span *ngIf="loginForm.get('email').errors !== null && loginForm.get('email').errors['required']">
+                  Email is verplicht
+                </span>
+                <span *ngIf="loginForm.get('email').errors !== null && loginForm.get('email').errors['email']">
+                  Geef een correcte email aub
+                </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="passwd">Paswoord:</label>
+              <input type="password" id="passwd" class="form-control" formControlName="passwd" />
+              <span class="text-muted"
+                *ngIf="!loginForm.get('passwd').valid && loginForm.get('passwd').touched">
+                  Paswoord is verplicht
+              </span>
+            </div>
+            <p class="text-muted">{{errorMessage}}</p>
+            <button class="btn btn-info btn-lg pull-right" type="submit" [disabled]="!loginForm.valid"
+              *ngIf="isRegistered">
+              Inloggen
+            </button>
+            <a class="btn btn-success btn-lg pull-right" type="submit" routerLink="/auth/registreren"
+              *ngIf="!isRegistered">
+              Registreren
+            </a>
+            <a class="btn btn-outline-danger pull-right mr-5" routerLink="/home">Cancel</a>
+          </form>
+        </div>
+      </div> <!-- end row -->
+    </div> <!-- end container -->
+  </div> <!-- end container-fluid -->

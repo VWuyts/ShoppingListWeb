@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
   title = 'ShoppingListWeb';
 
   ngOnInit() {
-    firebase.initializeApp((new AppConfig).getConfig());
+    firebase.initializeApp((new AppConfig()).getConfig());
   }
 }

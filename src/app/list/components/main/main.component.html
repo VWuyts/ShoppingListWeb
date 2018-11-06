@@ -3,8 +3,7 @@
     <h3>Mijn boodschappenlijst</h3>
     <div class="row">
       <div class="col-md-6">
-        <a class="btn btn-outline-info" routerLink="./admin">
-          <fa name="toolbox"></fa> <!-- Ref: FontAwesome_2018 -->
+        <a class="btn btn-outline-info" *ngIf="isAdmin()" routerLink="./admin">
           Admin page
         </a>
         <div class="dropdown pull-right">
@@ -13,7 +12,6 @@
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item text-info" routerLink="/lijst" (click)="onSortAbc()">
-              <fa name="sort-alpha=down"></fa>
               Sorteer alfabetisch
             </a>
             <a class="dropdown-item text-info" routerLink="/lijst" (click)="onSortCategory()">Sorteer per categorie</a>
