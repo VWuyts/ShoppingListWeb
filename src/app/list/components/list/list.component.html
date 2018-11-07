@@ -1,37 +1,36 @@
+<h6>boodschappenlijst</h6>
+<!-- empty list -->
+<div *ngIf="!getList().length">
+  <h5>Je boodschappenlijst is nog leeg</h5>
+  <a class="btn btn-info my-5" routerLink="./voegProductToe">Voeg een product toe</a>
+</div>
+
 <!-- alphabetically sorted -->
-<div *ngIf="getShoppingList().length && childSortAbc">
+<div *ngIf="getList().length && childSort.abc">
+  <div class="list-group">
+    <a
+      routerLink="./pasProductAan/{{listItem.id}}/{{listItem.name}}"
+      class="list-group-item list-group-item-action p-1"
+      *ngFor="let listItem of getList() | sort:childSort.direction:'name'">
+      <app-list-item [childListItem]="listItem"></app-list-item>
+    </a>
+  </div>
+</div>
+
+<!-- sorted per category -->
+<div *ngIf="getList().length && !childSort.abc">
+  <div *ngFor="let category of getCategories(); index as i">
+    <p class="border border-left-0 border-right-0 m-0 pl-2"
+      *ngIf="(getList() | filter:category:'category').length">
+      {{category}}
+    </p>
     <div class="list-group">
       <a
         routerLink="./pasProductAan/{{listItem.id}}/{{listItem.name}}"
         class="list-group-item list-group-item-action p-1"
-        *ngFor="let listItem of getShoppingList()">
+        *ngFor="let listItem of getList() | sort:1:'name' | filter:category:'category'">
         <app-list-item [childListItem]="listItem"></app-list-item>
       </a>
     </div>
   </div>
-
-  <!-- sorted per category -->
-  <div *ngIf="getShoppingList().length && !childSortAbc">
-    <div *ngFor="let category of categories; index as i">
-      <p class="border border-left-0 border-right-0 m-0 pl-2"
-        *ngIf="getShoppingListFor(category).length">
-        {{category}}
-      </p>
-      <div class="list-group">
-        <a
-          routerLink="./pasProductAan/{{listItem.id}}/{{listItem.name}}"
-          class="list-group-item list-group-item-action p-1"
-          *ngFor="let listItem of getShoppingListFor(category)">
-          <app-list-item [childListItem]="listItem"></app-list-item>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- empty list -->
-  <div *ngIf="!getShoppingList().length">
-    <h5>Je boodschappenlijst is nog leeg</h5>
-    <a class="btn btn-info my-5" routerLink="./voegProductToe">Voeg een product toe</a>
-  </div>
-
-
+</div>

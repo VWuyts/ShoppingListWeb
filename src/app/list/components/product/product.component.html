@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-2 imgHeight">
+      <img *ngIf="childProduct.image" src="/assets/images/{{childProduct.image}}" alt="Productfoto" class="imgHeight" />
+  </div>
+  <div class="col-7">
+    <h6 class="m-0">{{childProduct.name | limit: 20}}</h6>
+    <span *ngIf="isProductOnList()" class="badge badge-success">Op lijst</span>
+    <span *ngIf="!isProductOnList()" class="text-muted">{{childProduct.note | limit: 20}}</span>
+  </div>
+
+  <div class="col-2">
+    <img *ngIf="childProduct.shop && childProduct.isFixedShop"
+      src="/assets/images/logo_{{childProduct.shop | lowercase}}.png" alt="winkellogo" class=" pull-right logoWidth" />
+  </div>
+  <div class="col-1 px-0">
+    <fa *ngIf="!isProductOnList()" name="plus-square"></fa> <!-- Ref: FontAwesome_2018 -->
+  </div>
+</div>

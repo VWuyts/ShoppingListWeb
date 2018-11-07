@@ -8,8 +8,10 @@ import { ListBEService } from './services/list-be.service';
 import { ListComponent } from './components/list/list.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListRoutingModule } from './list-routing.module';
+import { ListService } from './services/list.service';
 import { MainComponent } from './components/main/main.component';
 import { ProductBEService } from './services/product-be.service';
+import { ProductComponent } from './components/product/product.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -24,10 +26,12 @@ import { SharedModule } from '../shared/shared.module';
     EditProductComponent,
     ListComponent,
     ListItemComponent,
-    MainComponent
+    MainComponent,
+    ProductComponent
   ],
   providers: [
     ListBEService,
+    ListService,
     ProductBEService
   ]
 })

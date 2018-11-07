@@ -1,3 +1,9 @@
-<p>
-  edit-product works!
-</p>
+<div class="mb-3">
+  <span class="font-weight-bold">{{title}}</span>
+  <button class="btn pull-right"
+    [ngClass]="{'btn-success': itemIsFavourite, 'btn-outline-success': !itemIsFavourite}"
+    (click)="toggleFavourite()">
+    <fa name="heart"></fa><!-- Ref: FontAwesome_2018 -->
+    {{favouriteBtn}}
+  </button>
+</div>

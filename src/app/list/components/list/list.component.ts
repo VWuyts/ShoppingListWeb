@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ListBEService } from '../../services/list-be.service';
-import { ListItem } from '../../basic-classes/list-item';
-import { ProductBEService } from '../../services/product-be.service';
+import { ListService } from '../../services/list.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -11,30 +9,20 @@ import { ProductBEService } from '../../services/product-be.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  categories: string[] = [];
-  uid: string;
+  @Input() childSort: {abc: boolean, direction: number};
 
   constructor(
-    private authService: AuthService,
-    private listBEService: ListBEService,
-    private productBEService: ProductBEService
+    private listService: ListService,
+    private productService: ProductService
   ) { }
 
-  ngOnInit() {
-    /*this.productBEService.getCategories().subscribe(
-      (response) => this.categories = response,
-      (error) => console.log(error)
-    );
-    this.uid = this.authService.getUid();*/
+  ngOnInit() { }
+
+  getCategories() {
+    return this.productService.getCategories();
   }
 
-  getShoppingList(): ListItem[] {
-    let list: ListItem[] = [];
-    this.listBEService.getList(this.uid).subscribe(
-      (response) => list = response,
-      (error) => console.log(error)
-    );
-
-    return list;
+  getList() {
+    return this.listService.getShoppingList();
   }
 }

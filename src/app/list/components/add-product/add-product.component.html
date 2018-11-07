@@ -1,3 +1,45 @@
-<p>
-  add-product works!
-</p>
+<div class="row">
+  <div class="col-12">
+       <h5 class="font-weight-bold mb-3">Product toevoegen</h5>
+  </div>
+</div> <!-- end row -->
+<div class="row">
+  <div class="col-lg-8 border border-left-0 pt-1"> <!-- favourites -->
+    <h6>Favoriete producten</h6>
+    <div class="row">
+      <div class="col-12 py-1">
+        <div *ngIf="getFavourites().length">
+          <div class="list-group">
+            <a
+              routerLink="/lijst/voegProductToe"
+              (click)="addProductToList(favourite)"
+              class="list-group-item list-group-item-action p-1"
+              [ngClass]="{'disabled': isProductOnList(favourite)}"
+              *ngFor="let favourite of getFavourites() | sort:1:'name'">
+              <app-product [childProduct]="favourite"></app-product>
+            </a>
+          </div>
+        </div>
+        <!-- empty favorites -->
+        <div *ngIf="!getFavourites().length">
+          <h5>Je hebt nog geen producten bij je favorieten gezet</h5>
+        </div>
+      </div>
+    </div> <!-- end row -->
+  </div> <!-- end favourites -->
+  <div class="col-lg-4 border border-left-0 border-right-0 pt-1"> <!-- catalogue -->
+    <h6>Catalogus</h6>
+    <div class="row">
+      <div class="col-lg-12 py-1">
+        <div class="list-group text-center">
+          <a
+            routerLink="/lijst/catalogus/{{category}}"
+            class="list-group-item list-group-item-action p-1"
+            *ngFor="let category of getCategories()">
+            {{category}}
+          </a>
+        </div>
+      </div>
+    </div> <!-- end row -->
+  </div><!-- end catalogue -->
+</div> <!-- end row -->

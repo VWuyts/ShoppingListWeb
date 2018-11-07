@@ -5,11 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ConstructionComponent } from './components/construction/construction.component';
+import { FilterPipe } from './pipes/filter.pipe';
 import { LimitPipe } from './pipes/limit.pipe';
 import { PunctuationPipe } from './pipes/punctuation.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { UnitPipe } from './pipes/unit.pipe';
-import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [
@@ -19,16 +19,17 @@ import { FilterPipe } from './pipes/filter.pipe';
   ],
   declarations: [
     ConstructionComponent,
+    FilterPipe,
     LimitPipe,
     PunctuationPipe,
     SortPipe,
-    UnitPipe,
-    FilterPipe,
+    UnitPipe
   ],
   exports: [
     AngularFontAwesomeModule,
     CommonModule,
     ConstructionComponent,
+    FilterPipe,
     LimitPipe,
     PunctuationPipe,
     ReactiveFormsModule,

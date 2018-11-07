@@ -26,14 +26,13 @@
               </span>
             </div>
             <p class="text-muted">{{errorMessage}}</p>
-            <button class="btn btn-info btn-lg pull-right" type="submit" [disabled]="!loginForm.valid"
-              *ngIf="isRegistered">
-              Inloggen
-            </button>
-            <a class="btn btn-success btn-lg pull-right" type="submit" routerLink="/auth/registreren"
+            <a class="btn btn-success btn-lg" type="submit" routerLink="/auth/registreren"
               *ngIf="!isRegistered">
               Registreren
             </a>
+            <button class="btn btn-info btn-lg pull-right" type="submit" [disabled]="!loginForm.valid">
+              Inloggen
+            </button>
             <a class="btn btn-outline-danger pull-right mr-5" routerLink="/home">Cancel</a>
           </form>
         </div>

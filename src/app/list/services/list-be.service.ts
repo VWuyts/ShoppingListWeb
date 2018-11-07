@@ -1,27 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
 
 import { ListItem } from '../basic-classes/list-item';
+import { Product } from '../basic-classes/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListBEService {
-  private listUrl = 'https://shoppinglistweb-vw.firebaseio.com/';
-  private extension = '.json';
+  private url = 'https://shoppinglistweb-vw.firebaseio.com/';
+  private favExtension = 'fav';
+  private FileExtension = '.json';
 
   constructor(private http: HttpClient) { }
 
+  getList(uid: string): Observable<ListItem[]> {
+    return this.http.get<ListItem[]>(this.url + uid + this.FileExtension);
+  }
+
   storeList(list: ListItem[], uid: string) {
-    return this.http.put(this.listUrl + uid + this.extension, list);
+    return this.http.put(this.url + uid + this.FileExtension, list);
   }
 
-  getList(uid: string) {
-    return this.http.get<ListItem[]>(this.listUrl + uid + this.extension);
+  getFavourites(uid: string): Observable<Product[]> {
+    return this.http.get<Product[]>(this.url + uid + this.favExtension + this.FileExtension);
   }
 
-  clearShoppingList(uid: string) {
-    const list: ListItem[] = [];
-    return this.http.put(this.listUrl + uid + this.extension, list);
+  storeFavourites(favourites: Product[], uid: string) {
+    return this.http.put(this.url + uid + this.favExtension + this.FileExtension, favourites);
   }
+
+  /*listExists(uid: string) {
+    firebase.database().ref(uid).once('value', snapshot => {
+      return snapshot.exists();
+    });
+  }*/
 }

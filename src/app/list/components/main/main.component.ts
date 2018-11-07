@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ListBEService } from '../../services/list-be.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ListService } from '../../services/list.service';
 
 @Component({
   selector: 'app-main',
@@ -9,13 +9,21 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  sort: {
+    abc: boolean
+    direction: number
+  };
 
   constructor(
     private authService: AuthService,
-    private listBEService: ListBEService
+    private listService: ListService
   ) { }
 
   ngOnInit() {
+    this.sort = {
+      abc: false,
+      direction: 0
+    };
   }
 
   isAdmin(): boolean {
@@ -25,19 +33,21 @@ export class MainComponent implements OnInit {
     return false;
   }
 
-  onSortAbc() {
+  onSortAZ() {
+    this.sort = {abc: true, direction: 1};
+  }
 
+  onSortZA() {
+    this.sort = {abc: true, direction: -1};
   }
 
   onSortCategory() {
-
+    this.sort = {abc: false, direction: 0};
   }
 
   onClearList() {
-    // TODO: ask confirmation
-    this.listBEService.clearShoppingList(this.authService.getUid()).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+    if (confirm('Wil je jouw boodschappenlijst leegmaken?')) {
+      this.listService.clearShoppingList();
+    }
   }
 }

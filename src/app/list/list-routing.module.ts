@@ -5,11 +5,13 @@ import { AddCatalogueProductComponent } from './components/add-catalogue-product
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuard } from '../core/services/admin.guard';
+import { AuthGuard } from '../core/services/auth.guard';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { MainComponent } from './components/main/main.component';
 
+
 const routes: Routes = [
-  { path: '', component: MainComponent, children: [
+  { path: '', component: MainComponent, canActivate: [AuthGuard], children: [
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'catalogus/:category', component: AddCatalogueProductComponent },
     { path: 'nieuwProduct/:id/:name', component: EditProductComponent },

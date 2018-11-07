@@ -1,3 +1,34 @@
-<p>
-  add-catalogue-product works!
-</p>
+<div class="row">
+  <div class="col-12">
+       <h5 class="font-weight-bold mb-3">Product toevoegen</h5>
+  </div>
+</div> <!-- end row -->
+<div class="row">
+  <div class="col-12 border border-left-0 border-right-0 border-bottom-0 py-1">
+    <h6><a class="text-dark" routerLink="/lijst/voegProductToe">Catalogus:</a> {{category}}</h6>
+    <div *ngIf="(getProducts() | filter:category:'category').length">
+      <div class="list-group">
+        <a
+          routerLink="."
+          (click)="addProductToList(product)"
+          class="list-group-item list-group-item-action p-1"
+          [ngClass]="{'disabled': isProductOnList(product)}"
+          *ngFor="let product of getProducts() | sort:1:'name' | filter:category:'category'">
+          <app-product [childProduct]="product"></app-product>
+        </a>
+      </div>
+    </div>
+    <!-- empty category -->
+    <div *ngIf="!(getProducts() | filter:category:'category').length" class="text-center pt-5">
+      <h5>Er staan geen producten van de categorie {{category}} in de catalogus</h5>
+    </div>
+  </div>
+</div> <!-- end row -->
+<div class="row">
+  <div class="col-12">
+    <div class="w-75 mx-auto">
+      <button type="button" class="btn btn-info mt-4 mr-4" (click)="onNewProduct()">Nieuw product maken</button>
+      <button type="button" class="btn btn-success mt-4 ready" (click)="onReady()">Klaar</button>
+    </div>
+  </div>
+</div>

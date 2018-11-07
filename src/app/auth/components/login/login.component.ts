@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.email, this.loginForm.get('passwd').value)
       .then((message: string) => {
         if (message === '') {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/lijst']);
         } else if (message === 'emailInvalid') {
           this.errorMessage = 'De gegeven email is niet geldig.';
           this.loginForm.reset();

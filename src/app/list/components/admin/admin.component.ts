@@ -577,7 +577,6 @@ export class AdminComponent implements OnInit {
     'kist',
     'karton'
   ];
-  private lastProductId = 262;
 
   constructor(private productBEService: ProductBEService) { }
 

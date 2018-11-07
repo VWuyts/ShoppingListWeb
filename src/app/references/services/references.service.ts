@@ -45,6 +45,11 @@ export class ReferencesService {
       url: 'https://rxjs-dev.firebaseapp.com/api/index/function/from', urlDate: new Date('2018-11-04')},
     {id: 'AngularRxJS_2018', author: 'Angular', title: 'The RxJS library', year: 2018, organisation: 'Google',
       url: 'https://angular.io/guide/rx-library', urlDate: new Date('2018-11-04')},
+    {id: 'Adolfosrs_20018', author: 'adolfosrs, André Kool', title: 'Check if value exists in firebase DB',
+      year: 2018, organisation: 'Stack Overflow',
+      url: 'https://stackoverflow.com/questions/37910008/check-if-value-exists-in-firebase-db', urlDate: new Date('2018-11-07')},
+    {id: 'AngularServices_2018', author: 'Angular', title: 'Providing a singleton service', year: 2018, organisation: 'Google',
+      url: 'https://angular.io/guide/singleton-services', urlDate: new Date('2018-11-07')},
   ];
 
   constructor() { }
