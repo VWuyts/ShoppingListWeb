@@ -7,3 +7,100 @@
     {{favouriteBtn}}
   </button>
 </div>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-4">
+        <img src="{{itemImage}}" alt="productfoto"/>
+    </div>
+    <div class="col-8">
+      <div class="form-group">
+        <label for="name">Naam:</label>
+        <input *ngIf="id >= 0" type="text" class="form-control" id="name" formControlName="name" />
+        <input *ngIf="id < 0" type="text" class="form-control" id="name" formControlName="name" appAutofocus />
+        <span class="text-muted"
+          *ngIf="!editForm.get('name').valid && editForm.get('name').touched">
+          <span *ngIf="editForm.get('name').errors !== null && editForm.get('name').errors['invalidName']">
+            Gelieve een andere naam te geven
+          </span>
+          <span *ngIf="editForm.get('name').errors !== null && editForm.get('name').errors['required']">
+            Naam is verplicht
+          </span>
+        </span>
+      </div> <!-- end FormControl name -->
+      <div class="form-group">
+        <label for="category">Categorie:</label>
+        <select class="form-control" id="category"formControlName="category">
+          <option
+            *ngFor="let category of getCategories()" [value]="category">
+            {{category}}
+          </option>
+        </select>
+        <span class="text-muted"
+          *ngIf="!editForm.get('category').valid && editForm.get('category').touched">
+          Categorie is verplicht
+        </span>
+      </div> <!-- end FormControl category -->
+    </div>
+  </div> <!-- end row -->
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="amount">Aantal:</label>
+        <input *ngIf="id >= 0" type="number" class="form-control" id="amount" min="0" formControlName="amount" appAutofocus />
+        <input *ngIf="id < 0" type="number" class="form-control" id="amount" min="0" formControlName="amount" />
+      </div><!-- end FormControl amount -->
+    </div>
+    <div class="col-8">
+      <div class="form-group">
+        <label for="unit">Eenheid:</label>
+        <select class="form-control" id="unit" formControlName="unit">
+          <option
+            *ngFor="let unit of getUnits()" [value]="unit">
+            {{unit}}
+          </option>
+        </select>
+      </div> <!-- end form-group -->
+    </div>
+  </div><!-- end row -->
+  <div class="row pt-3" formGroupName="shop">
+    <div class="col-4">
+      <label for="shop">Winkel:</label>
+    </div>
+    <div class="col-8">
+      <select class="form-control" id="shop" formControlName="shopName">
+        <option
+          *ngFor="let shop of getShops()" [value]="shop">
+          {{shop}}
+        </option>
+      </select>
+      <div class="form-group form-check">
+        <label class="form-check-label mt-2">
+            <input type="checkbox" class="form-check-input" formControlName="isFixedShop" />
+          Altijd deze winkel?
+        </label>
+      </div> <!-- end form-group -->
+    </div>
+  </div> <!-- end row-->
+  <div class="row pt-3" formGroupName="note">
+    <div class="col-4">
+      <label for="note">Notitie:</label>
+    </div>
+    <div class="col-8">
+      <input type="text" class="form-control" id="note" formControlName="noteContent" />
+      <div class="form-group form-check">
+          <label class="form-check-label mt-2">
+            <input type="checkbox" class="form-check-input" formControlName="inPromotion" />
+            In promotie?
+          </label>
+        </div> <!-- end form-group -->
+    </div>
+  </div> <!-- end row-->
+  <div class="row">
+    <div class="col-12">
+      <div class="w-75 mx-auto">
+        <button type="button" class="btn btn-danger mt-4 mr-4" (click)="onDeleteListItem()">Verwijderen</button>
+        <button type="submit" class="btn btn-success mt-4" [disabled]=!editForm.valid>Klaar</button>
+      </div>
+    </div>
+  </div> <!-- end row -->
+</form>

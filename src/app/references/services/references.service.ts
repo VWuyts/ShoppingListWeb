@@ -50,6 +50,10 @@ export class ReferencesService {
       url: 'https://stackoverflow.com/questions/37910008/check-if-value-exists-in-firebase-db', urlDate: new Date('2018-11-07')},
     {id: 'AngularServices_2018', author: 'Angular', title: 'Providing a singleton service', year: 2018, organisation: 'Google',
       url: 'https://angular.io/guide/singleton-services', urlDate: new Date('2018-11-07')},
+    {id: '', author: 'Shekhar Gulati', title: 'Adding autofocus to an input field in an Angular 5 Bootstrap 4 application',
+      year: 2017, organisation: '',
+      url: 'https://shekhargulati.com/2017/12/02/adding-autofocus-to-an-input-field-in-an-angular-5-bootstrap-4-application/',
+      urlDate: new Date('2018-11-08')},
   ];
 
   constructor() { }

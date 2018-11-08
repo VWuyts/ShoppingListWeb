@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { AutofocusDirective } from './directives/autofocus.directive';
 import { ConstructionComponent } from './components/construction/construction.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { LimitPipe } from './pipes/limit.pipe';
@@ -18,6 +19,7 @@ import { UnitPipe } from './pipes/unit.pipe';
     RouterModule // needed for home link in ConstructionComponent
   ],
   declarations: [
+    AutofocusDirective,
     ConstructionComponent,
     FilterPipe,
     LimitPipe,
@@ -27,6 +29,7 @@ import { UnitPipe } from './pipes/unit.pipe';
   ],
   exports: [
     AngularFontAwesomeModule,
+    AutofocusDirective,
     CommonModule,
     ConstructionComponent,
     FilterPipe,

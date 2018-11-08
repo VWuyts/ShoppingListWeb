@@ -6,7 +6,7 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" class="form-control" formControlName="email" />
+            <input type="email" id="email" class="form-control" formControlName="email" appAutofocus />
             <span class="text-muted"
               *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">
               <span *ngIf="registrationForm.get('email').errors !== null && registrationForm.get('email').errors['required']">

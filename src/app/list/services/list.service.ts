@@ -89,6 +89,29 @@ export class ListService {
       listItem.note = product.note;
       listItem.shop = product.shop;
       listItem.isFixedShop = product.isFixedShop;
+      // TODO: can this be done in a CanDeactivate Guard to minimise network traffic?
+      if (listItem.isFavourite) {
+        const favProduct = this.favourites.find(
+          fav => {
+            return fav.id === listItem.productId;
+          }
+        );
+        if (favProduct) {
+          favProduct.name = listItem.name;
+          favProduct.category = listItem.category;
+          favProduct.unit = listItem.unit;
+          favProduct.note = listItem.note;
+          if (listItem.isFixedShop) {
+            favProduct.shop = listItem.shop;
+            favProduct.isFixedShop = true;
+          }
+        }
+        // TODO: can this be done in a CanDeactivate Guard to minimise network traffic?
+        this.listBEService.storeFavourites(this.favourites, this.uid).subscribe(
+          () => {},
+          (error) => console.log(error)
+        );
+      }
     } else {
       this.addProductToList(pAmount, pInPromotion, product);
     }
