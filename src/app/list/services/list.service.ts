@@ -1,45 +1,44 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ListBEService } from './list-be.service';
 import { ListItem } from '../basic-classes/list-item';
 import { Product } from '../basic-classes/product';
 import { SortOrder } from '../basic-classes/sort-order';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
 })
-export class ListService {
+export class ListService implements OnDestroy {
   private shoppingList: ListItem[];
   private favourites: Product[];
-  private uid: string;
   private lastId: number;
+  private uid: string;
   sortOrderChanged = new Subject();
+  userLoginSubscription: Subscription;
+  userLogoutSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
     private listBEService: ListBEService
   ) {
-    this.uid = this.authService.getUid();
-
-    this.shoppingList = [];
-    this.listBEService.getList(this.uid).subscribe(
-      (response) => {
-        this.shoppingList = response === null ? [] : response;
-        this.setLastId();
-      },
-      (error) => console.log(error)
+    // Subscriptions
+    this.userLoginSubscription = listBEService.userLoggedIn.subscribe(
+      () => this.initializeForUser()
+    );
+    this.userLogoutSubscription = listBEService.userLoggedOut.subscribe(
+      () => this.clearOnLogout()
     );
 
-    this.favourites = [];
-    listBEService.getFavourites(this.uid).subscribe(
-      (response) => {
-        this.favourites = response !== null ? response : [];
-      },
-      (error) => console.log(error)
-    );
+    this.initializeForUser();
   } // end constructor
+
+  // Ref: AngularOnDestroy_2018
+  ngOnDestroy(): void {
+    this.userLoginSubscription.unsubscribe();
+    this.userLogoutSubscription.unsubscribe();
+  } // end ngOnDestroy
 
   getFavourites() {
     return this.favourites;
@@ -194,6 +193,34 @@ export class ListService {
       (error) => console.log(error)
     );
   } // end updateItemInList
+
+  private clearOnLogout() {
+    this.shoppingList = [];
+    this.favourites = [];
+    this.uid = '';
+    this.setLastId();
+  } // end clearOnLogout
+
+  private initializeForUser() {
+    this.uid = this.authService.getUid();
+
+    this.shoppingList = [];
+    this.listBEService.getList(this.uid).subscribe(
+      (response) => {
+        this.shoppingList = response === null ? [] : response;
+        this.setLastId();
+      },
+      (error) => console.log(error)
+    );
+
+    this.favourites = [];
+    this.listBEService.getFavourites(this.uid).subscribe(
+      (response) => {
+        this.favourites = response !== null ? response : [];
+      },
+      (error) => console.log(error)
+    );
+  } // end initializeForUser
 
   private setLastId() {
     if (this.shoppingList.length) {

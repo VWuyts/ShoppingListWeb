@@ -2,18 +2,21 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { CanComponentDeActivate } from 'src/app/core/guards/can-deactivate-guard';
 import { ListItem } from '../../basic-classes/list-item';
 import { ListService } from '../../services/list.service';
 import { Product } from '../../basic-classes/product';
 import { ProductService } from '../../services/product.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent implements OnInit {
+export class EditProductComponent implements OnInit, CanComponentDeActivate {
   editForm: FormGroup;
+  editFormSaved: boolean;
   id: number;
   itemName: string;
   listItem: ListItem;
@@ -38,6 +41,7 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit() {
     this.initialize();
+    this.editFormSaved = false;
   } // end ngOnInit
 
   getCategories() {
@@ -51,6 +55,21 @@ export class EditProductComponent implements OnInit {
   getUnits() {
     return this.productService.getUnits();
   } // end getUnits
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.itemName && this.itemName !== 'Nieuw product') {
+      return this.editForm.dirty && !this.editFormSaved ?
+        confirm('Wil je de wijzigingen aan ' + this.itemName + ' annuleren?') : true;
+    }
+    return true;
+  } // end canDeactivate
+
+  onDeleteListItem() {
+    if (this.listItem) {
+      this.listService.removeItemFromList(this.listItem);
+    }
+    this.router.navigate(['/lijst']);
+  } // end onDeleteListItem
 
   onSubmit() {
     this.getFormData();
@@ -69,15 +88,9 @@ export class EditProductComponent implements OnInit {
       this.listService.updateItemInList(this.id, this.itemAmount, this.itemInPromotion, product);
     }
 
+    this.editFormSaved = true;
     this.router.navigate(['/lijst']);
   } // end onSubmit
-
-  onDeleteListItem() {
-    if (this.listItem) {
-      this.listService.removeItemFromList(this.listItem);
-    }
-    this.router.navigate(['/lijst']);
-  } // end onDeleteListItem
 
   toggleFavourite() {
     this.listService.toggleFavourite(this.listItem);

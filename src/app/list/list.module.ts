@@ -28,11 +28,6 @@ import { SharedModule } from '../shared/shared.module';
     ListItemComponent,
     MainComponent,
     ProductComponent
-  ],
-  providers: [
-    ListBEService,
-    ListService,
-    ProductBEService
   ]
 })
 export class ListModule { }

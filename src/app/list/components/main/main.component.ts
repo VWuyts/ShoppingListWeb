@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ListService } from '../../services/list.service';
 
 @Component({

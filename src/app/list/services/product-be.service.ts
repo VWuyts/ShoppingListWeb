@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from '../basic-classes/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
 })
 export class ProductBEService {
   private categoryUrl = 'https://shoppinglistweb-vw.firebaseio.com/category.json';

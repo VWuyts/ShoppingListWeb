@@ -4,7 +4,7 @@ import { Product } from '../basic-classes/product';
 import { ProductBEService } from './product-be.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
 })
 export class ProductService {
   private products: Product[];

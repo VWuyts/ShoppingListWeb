@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as firebase from 'firebase';
+import { Observable, Subject } from 'rxjs';
 
 import { ListItem } from '../basic-classes/list-item';
 import { Product } from '../basic-classes/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
 })
 export class ListBEService {
   private url = 'https://shoppinglistweb-vw.firebaseio.com/';
   private favExtension = 'fav';
   private FileExtension = '.json';
+  userLoggedIn = new Subject();
+  userLoggedOut = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -32,9 +33,11 @@ export class ListBEService {
     return this.http.put(this.url + uid + this.favExtension + this.FileExtension, favourites);
   }
 
-  /*listExists(uid: string) {
-    firebase.database().ref(uid).once('value', snapshot => {
-      return snapshot.exists();
-    });
-  }*/
+  loginUser() {
+    this.userLoggedIn.next();
+  }
+
+  logoutUser() {
+    this.userLoggedOut.next();
+  }
 }

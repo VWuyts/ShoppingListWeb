@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
     ReferencesRoutingModule,
     SharedModule
   ],
-  declarations: [ReferencesComponent],
-  providers: [ReferencesService]
+  declarations: [ReferencesComponent]
 })
 export class ReferencesModule { }

@@ -2,8 +2,11 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 
+/*@Injectable({
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
+})*/
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 

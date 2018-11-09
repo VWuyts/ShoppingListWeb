@@ -3,34 +3,57 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 import { AppConfig } from 'src/app/app-config';
+import { ListBEService } from 'src/app/list/services/list-be.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root' // Refs: AngularProviders_2018 and AngularServices_2018
+})
 export class AuthService {
   token: string;
 
-  constructor(private router: Router) {
+  constructor(
+    private listBEService: ListBEService,
+    private router: Router
+  ) {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
     }
-  }
+  } // end constructor
+
+  getToken() {
+    firebase.auth().currentUser.getIdToken()
+      .then((token: string) => this.token = token
+    );
+
+    return this.token;
+  } // end getToken
+
+  getUid(): string {
+    const user = firebase.auth().currentUser;
+
+    if (user) {
+      return user.uid;
+    }
+    return null;
+  } // end getUid
 
   checkEmail(email: string): Promise<any> {
     return firebase.auth().fetchSignInMethodsForEmail(email);
-  }
-
-  isLoggedIn(): boolean {
-    if (firebase.auth().currentUser) {
-      return true;
-    }
-    return null;
-  }
+  } // end checkEmail
 
   isAdmin(): boolean {
     if (this.isLoggedIn() && firebase.auth().currentUser.email === (new AppConfig).getAdminEmail()) {
       return true;
     }
     return false;
-  }
+  } // end isAdmin
+
+  isLoggedIn(): boolean {
+    if (firebase.auth().currentUser) {
+      return true;
+    }
+    return null;
+  } // end isLoggedIn
 
   login(email: string, password: string): Promise<string> {
     return firebase.auth().signInWithEmailAndPassword(email, password)
@@ -40,6 +63,7 @@ export class AuthService {
             .then((token: string) => {
               this.token = token;
               localStorage.setItem('token', token);
+              this.listBEService.loginUser();
             });
             return '';
         })
@@ -56,14 +80,23 @@ export class AuthService {
           }
         }
       );
-  }
+  } // end login
 
   logout() {
-    firebase.auth().signOut();
-    this.token = null;
-    localStorage.removeItem('token');
-    this.router.navigate(['/home']);
-  }
+    firebase.auth().signOut().then(
+      () => {
+        this.token = null;
+        if (localStorage.getItem('token')) {
+          localStorage.removeItem('token');
+        }
+        this.listBEService.logoutUser();
+        this.router.navigate(['/home']);
+      }
+    )
+    .catch(
+      error => console.log(error)
+    );
+  } // end logout
 
   register(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -71,24 +104,7 @@ export class AuthService {
         () => this.router.navigate(['/auth/succes'])
       )
       .catch(
-        error => console.log(error.code)
+        error => console.log(error)
       );
-  }
-
-  getToken() {
-    firebase.auth().currentUser.getIdToken()
-      .then((token: string) => this.token = token
-    );
-
-    return this.token;
-  }
-
-  getUid(): string {
-    const user = firebase.auth().currentUser;
-
-    if (user) {
-      return user.uid;
-    }
-    return null;
-  }
+  } // end register
 }
