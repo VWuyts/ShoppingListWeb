@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
 import { ConstructionComponent } from './construction.component';
 
@@ -8,7 +9,10 @@ describe('ConstructionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConstructionComponent ]
+      declarations: [
+        ConstructionComponent,
+        MockFaComponent
+      ]
     })
     .compileComponents();
   }));
@@ -16,10 +20,17 @@ describe('ConstructionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConstructionComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
+
+// Mock components - Ref: Kern_2017
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'fa',
+  template: ''
+})
+class MockFaComponent { }

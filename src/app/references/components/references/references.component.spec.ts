@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { PunctuationPipe } from 'src/app/shared/pipes/punctuation.pipe';
 import { ReferencesComponent } from './references.component';
+import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 
 describe('ReferencesComponent', () => {
   let component: ReferencesComponent;
@@ -8,7 +10,11 @@ describe('ReferencesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReferencesComponent ]
+      declarations: [
+        PunctuationPipe,
+        ReferencesComponent,
+        SortPipe
+      ]
     })
     .compileComponents();
   }));
@@ -16,7 +22,6 @@ describe('ReferencesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ReferencesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

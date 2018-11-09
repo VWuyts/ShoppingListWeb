@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { LimitPipe } from 'src/app/shared/pipes/limit.pipe';
 import { ListItemComponent } from './list-item.component';
+import { UnitPipe } from 'src/app/shared/pipes/unit.pipe';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -8,7 +10,11 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListItemComponent ]
+      declarations: [
+        LimitPipe,
+        ListItemComponent,
+        UnitPipe
+    ]
     })
     .compileComponents();
   }));
@@ -16,7 +22,6 @@ describe('ListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListItemComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

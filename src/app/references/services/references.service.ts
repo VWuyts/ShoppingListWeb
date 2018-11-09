@@ -57,7 +57,21 @@ export class ReferencesService {
       url: 'https://shekhargulati.com/2017/12/02/adding-autofocus-to-an-input-field-in-an-angular-5-bootstrap-4-application/',
       urlDate: new Date('2018-11-08')},
     {id: 'AngularOnDestroy_2018', author: 'Angular', title: 'OnDestroy', year: 2018, organisation: 'Google',
-      url: 'https://angular.io/api/core/OnDestroy', urlDate: new Date('2018-11-08')}
+      url: 'https://angular.io/api/core/OnDestroy', urlDate: new Date('2018-11-08')},
+    {id: '', author: 'Angular', title: 'Testing', year: 2018, organisation: 'Google',
+      url: 'https://angular.io/guide/testing', urlDate: new Date('2018-11-09')},
+    {id: 'Kern_2017', author: 'Kim Kern', title: 'Angular 2 Karma Test \'component-name\' is not a known element',
+      year: 2017, organisation: 'Stack Overflow',
+      url: 'https://stackoverflow.com/questions/44504468/angular-2-karma-test-component-name-is-not-a-known-element',
+      urlDate: new Date('2018-11-09')},
+    {id: 'Asim_2017', author: 'Asim', title: 'Testing Model Driven Forms', year: 2017, organisation: 'CodeCraft',
+      url: 'https://codecraft.tv/courses/angular/unit-testing/model-driven-forms/', urlDate: new Date('2018-11-09')},
+    {id: 'Fehskens_2017', author: 'Matt Fehskens', title: 'Testing Components in Angular 2 with Jasmine',
+      year: 2017, organisation: 'Semaphore',
+      url: 'https://semaphoreci.com/community/tutorials/testing-components-in-angular-2-with-jasmine', urlDate: new Date('2018-11-09')},
+    {id: 'SamsothaBugs_2017', author: 'Paul Samsotha, bugs', title: 'Angular 2 - Unit Testing with Router',
+      year: 2017, organisation: 'Stack Overflow',
+      url: 'https://stackoverflow.com/questions/39791773/angular-2-unit-testing-with-router', urlDate: new Date('2018-11-09')},
   ];
 
   constructor() { }

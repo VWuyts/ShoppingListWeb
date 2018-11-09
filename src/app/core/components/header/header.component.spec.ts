@@ -1,4 +1,8 @@
+/* Karma Failed: Template parse errors:
+Can't bind to 'routerLinkActiveOptions' since it isn't a known property of 'li'
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
 
@@ -8,7 +12,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [
+        HeaderComponent,
+        MockFaComponent
+      ]
     })
     .compileComponents();
   }));
@@ -22,3 +29,12 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+// Mock components - Ref: Kern_2017
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'fa',
+  template: ''
+})
+class MockFaComponent { }
+*/
