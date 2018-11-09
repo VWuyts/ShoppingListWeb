@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { ListService } from '../../services/list.service';
 import { ProductService } from '../../services/product.service';
+import { SortOrder } from '../../basic-classes/sort-order';
 
 @Component({
   selector: 'app-list',
@@ -9,14 +10,21 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  @Input() childSort: {abc: boolean, direction: number};
+  sortOrder: SortOrder;
 
   constructor(
     private listService: ListService,
     private productService: ProductService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.sortOrder = {abc: false, direction: 0};
+    this.listService.sortOrderChanged.subscribe(
+      (sortOrder: SortOrder) => {
+        this.sortOrder = sortOrder;
+      }
+    );
+  }
 
   getCategories() {
     return this.productService.getCategories();

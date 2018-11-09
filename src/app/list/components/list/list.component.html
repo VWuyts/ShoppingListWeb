@@ -6,19 +6,19 @@
 </div>
 
 <!-- alphabetically sorted -->
-<div *ngIf="getList().length && childSort.abc">
+<div *ngIf="getList().length && sortOrder.abc">
   <div class="list-group">
     <a
       routerLink="./pasProductAan/{{listItem.id}}/{{listItem.name}}"
       class="list-group-item list-group-item-action p-1"
-      *ngFor="let listItem of getList() | sort:childSort.direction:'name'">
+      *ngFor="let listItem of getList() | sort:sortOrder.direction:'name'">
       <app-list-item [childListItem]="listItem"></app-list-item>
     </a>
   </div>
 </div>
 
 <!-- sorted per category -->
-<div *ngIf="getList().length && !childSort.abc">
+<div *ngIf="getList().length && !sortOrder.abc">
   <div *ngFor="let category of getCategories(); index as i">
     <p class="border border-left-0 border-right-0 m-0 pl-2"
       *ngIf="(getList() | filter:category:'category').length">

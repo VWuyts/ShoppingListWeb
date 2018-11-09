@@ -9,22 +9,13 @@ import { ListService } from '../../services/list.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  sort: {
-    abc: boolean
-    direction: number
-  };
 
   constructor(
     private authService: AuthService,
     private listService: ListService
   ) { }
 
-  ngOnInit() {
-    this.sort = {
-      abc: false,
-      direction: 0
-    };
-  }
+  ngOnInit() { }
 
   isAdmin(): boolean {
     if (this.authService.isAdmin()) {
@@ -34,15 +25,15 @@ export class MainComponent implements OnInit {
   }
 
   onSortAZ() {
-    this.sort = {abc: true, direction: 1};
+    this.listService.changeSortOrder({abc: true, direction: 1});
   }
 
   onSortZA() {
-    this.sort = {abc: true, direction: -1};
+    this.listService.changeSortOrder({abc: true, direction: -1});
   }
 
   onSortCategory() {
-    this.sort = {abc: false, direction: 0};
+    this.listService.changeSortOrder({abc: false, direction: 0});
   }
 
   onClearList() {
